@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Camera))]
 public class PlayerCamera : MonoBehaviour {
 
     [SerializeField] private float scrollSpeed;
@@ -10,12 +9,10 @@ public class PlayerCamera : MonoBehaviour {
     private NurseInput input;
     private Vector3 startPos;
     private Vector3 scrollDist;
-    private Camera cam;
     private float travel;
 
     private void Awake () {
         input = nurse.GetComponent<NurseInput>();
-        cam = GetComponent<Camera>();
 	}
 
     private void Start() {

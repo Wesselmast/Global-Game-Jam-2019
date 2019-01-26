@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Personalizer : MonoBehaviour {
     private enum Gender { Male, Female };
     [SerializeField] private Gender gen;
-    private Text text;
+    private Text[] texts;
 
     private string[] firstMaleNames = {
         "James", "David", "Christopher", "George",
@@ -28,12 +28,16 @@ public class Personalizer : MonoBehaviour {
     };
 
     private void Awake () {
-        text = GetComponentInChildren<Text>();
+        texts = GetComponentsInChildren<Text>();
     }
 
     private void Start() {
-        text.text = gen == Gender.Male ?
+        texts[1].text = gen == Gender.Male ?
         firstMaleNames[Random.Range(0, firstMaleNames.Length - 1)] + " " + lastNames[Random.Range(0, lastNames.Length - 1)] :
         firstFemaleNames[Random.Range(0, firstFemaleNames.Length - 1)] + " " + lastNames[Random.Range(0, lastNames.Length - 1)];
+    }
+
+    private void FixedUpdate() {
+        texts[0].text = GetComponentInParent<Interest>().CurrentNeed.ToString();
     }
 }
