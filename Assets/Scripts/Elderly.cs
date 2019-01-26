@@ -49,6 +49,7 @@ public class Elderly : MonoBehaviour {
             if (!roam) nav.destination = target.position;
             else { nav.destination = Roam().position; this.target = null; }
         } catch { }
+        this.target = null;
     }
 
     public void SetTarget(Transform target, TargetPriority prio) {
