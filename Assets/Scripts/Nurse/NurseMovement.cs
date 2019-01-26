@@ -15,13 +15,9 @@ public class NurseMovement : MonoBehaviour {
         controller = GetComponent<CharacterController>();
 	}
 
-    private void Start() {
-        startY = transform.position.y;
-    }
-
 	private void FixedUpdate () {
         Vector3 velocity = new Vector3(input.Horizontal, 0f, input.Vertical) * Time.deltaTime * speed;
-        transform.position = new Vector3(transform.position.x, startY, transform.position.z);
+        controller.Move(Vector3.down * Time.deltaTime);
         controller.Move(velocity);
     }
 }
