@@ -18,10 +18,16 @@ public class Player : MonoBehaviour {
     float speed;
     bool disabled;
 
+    public ParticleSystem syst1;
+    public ParticleSystem syst2;
+    public ParticleSystem syst3;
+    AudioSource src;
+
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        src = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -36,6 +42,21 @@ public class Player : MonoBehaviour {
         speed = Mathf.Clamp(speed, -maxSpeed, maxSpeed);
 
         diareeeee -= (Input.GetAxisRaw("Jump") != 0) ? 10 * Time.deltaTime : 0;
+
+        if((Input.GetAxisRaw("Jump") != 0))
+        {
+            src.volume = 1;
+            syst1.emissionRate = 100;
+            syst2.emissionRate = 100;
+            syst3.emissionRate = 100;
+        }
+        else
+        {
+            src.volume = 0;
+            syst1.emissionRate = 0;
+            syst2.emissionRate = 0;
+            syst3.emissionRate = 0;
+        }
 
         transform.Rotate(transform.up, Input.GetAxisRaw("Horizontal") * RotateSpeed * Time.deltaTime);
 
