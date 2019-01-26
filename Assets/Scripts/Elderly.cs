@@ -10,7 +10,7 @@ public enum TargetPriority {
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Elderly : MonoBehaviour {
-    
+    /*
     [SerializeField] private float speed;
     public float Speed { get { return speed; } set { speed = value; } }
 
@@ -53,5 +53,5 @@ public class Elderly : MonoBehaviour {
 
     public void SetTarget(Transform target, TargetPriority prio) {
         this.target = target;
-    }
+    } */
 }

@@ -21,14 +21,14 @@ public class FindElderly : MonoBehaviour {
             if (current != null)
             {
                 last = current;
-                current.SetTarget(null);
+               // current.SetTarget(null);
                 current = null;
             }
 
             Elderly closestElder = GetClosestElder(Physics.OverlapSphere(transform.position, radius, elderlyMask));
             if (!ReferenceEquals(closestElder, null) && !ReferenceEquals(closestElder, last))
             {
-                closestElder.SetTarget(transform);
+               // closestElder.SetTarget(transform);
                 current = closestElder;
             }
 
