@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour {
 
@@ -13,7 +11,8 @@ public class Player : MonoBehaviour {
     public float maxSpeed;
     public float RotateSpeed;
 
-    public float diareeeee = 100;
+    public float maxDiaree = 150f;
+    public float diareeeee = 150f;
 
     float speed;
     bool disabled;
@@ -36,6 +35,7 @@ public class Player : MonoBehaviour {
         speed = Mathf.Clamp(speed, -maxSpeed, maxSpeed);
 
         diareeeee -= (Input.GetAxisRaw("Jump") != 0) ? 10 * Time.deltaTime : 0;
+        diareeeee = Mathf.Clamp(diareeeee, 0, maxDiaree);
 
         transform.Rotate(transform.up, Input.GetAxisRaw("Horizontal") * RotateSpeed * Time.deltaTime);
 
