@@ -4,13 +4,36 @@
 public class FindElderly : MonoBehaviour {
 
     public float radius;
+    private NurseInput input;
+    public Elderly current;
+    public Elderly last;
 
     [SerializeField] private LayerMask elderlyMask;
 
-    private void FixedUpdate() {
-        Elderly closestElder = GetClosestElder(Physics.OverlapSphere(transform.position, radius, elderlyMask));
-        if (!ReferenceEquals(closestElder, null)) closestElder.SetTarget(transform, TargetPriority.MEDIUM);
-        else foreach (var elder in FindObjectsOfType<Elderly>()) elder.SetTarget(null, TargetPriority.MEDIUM);
+    private void Awake()
+    {
+        input = GetComponent<NurseInput>();
+    }
+
+    private void Update() {
+        if (input.SelectElder)
+        {
+            if (current != null)
+            {
+                last = current;
+                current.SetTarget(null);
+                current = null;
+            }
+
+            Elderly closestElder = GetClosestElder(Physics.OverlapSphere(transform.position, radius, elderlyMask));
+            if (!ReferenceEquals(closestElder, null) && !ReferenceEquals(closestElder, last))
+            {
+                closestElder.SetTarget(transform);
+                current = closestElder;
+            }
+
+            last = null;
+        }
     }
 
     private Elderly GetClosestElder(Collider[] elderlyPeople) {
@@ -23,7 +46,9 @@ public class FindElderly : MonoBehaviour {
                 bestDist = thisDist;
             }
         }
-        try { return closest.GetComponent<Elderly>(); }
-        catch { return null; }
+        if(bestDist < float.MaxValue)
+            return closest.GetComponent<Elderly>();
+        
+        return null;
     }
 }

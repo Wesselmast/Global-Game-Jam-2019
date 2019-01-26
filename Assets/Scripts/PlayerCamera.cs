@@ -19,9 +19,8 @@ public class PlayerCamera : MonoBehaviour {
         startPos = transform.position;
     }
 
-    private void FixedUpdate () {
+    private void LateUpdate () {
         SmoothFollow();
-        Scrolling();
     }
 
     private void SmoothFollow() {
@@ -29,9 +28,5 @@ public class PlayerCamera : MonoBehaviour {
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref zeroRef, smooth);
     }
 
-    private void Scrolling() {
-        if (input.ScrollPos > 0f && travel > -6.5f) travel = travel - scrollSpeed;
-        else if (input.ScrollPos < 0f && travel < 1)  travel = travel + scrollSpeed;
-        scrollDist = new Vector3(0, travel, 0);
-    }
+    
 }
