@@ -1949,7 +1949,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b26000b0ab5ea814d934562eaa3f3f97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gen: 0
 --- !u!114 &114990416907038842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1963,7 +1962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHomefulness: 50
   homefulnessCap: 100
-  homefullnessReduction: 0.01
+  homefullnessReduction: 0.025
   minTime: 15
   maxTime: 20
   chanceForANeed: 75

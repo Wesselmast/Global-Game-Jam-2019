@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class Personalizer : MonoBehaviour {
     private enum Gender { Male, Female };
-    [SerializeField] private Gender gen;
+    private Gender gen;
     private Text[] texts;
 
     private string[] firstMaleNames = {
@@ -32,7 +32,7 @@ public class Personalizer : MonoBehaviour {
     }
 
     private void Start() {
-        texts[1].text = gen == Gender.Male ?
+        texts[1].text = Random.Range(0, 2) == 1 ?
         firstMaleNames[Random.Range(0, firstMaleNames.Length - 1)] + " " + lastNames[Random.Range(0, lastNames.Length - 1)] :
         firstFemaleNames[Random.Range(0, firstFemaleNames.Length - 1)] + " " + lastNames[Random.Range(0, lastNames.Length - 1)];
     }

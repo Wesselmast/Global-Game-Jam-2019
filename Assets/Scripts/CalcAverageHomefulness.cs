@@ -12,9 +12,7 @@ public class CalcAverageHomefulness : MonoBehaviour {
     private void FixedUpdate() {
         float sum = 0;
         Interest[] ints = FindObjectsOfType<Interest>();
-        for (int i = 0; i < ints.Length; i++) {
-            sum += ints[i].Homefulness;
-        }
+        for (int i = 0; i < ints.Length; i++) sum += ints[i].Homefulness;
         text.text = Mathf.FloorToInt(sum / ints.Length) + "%";
     }
 }
