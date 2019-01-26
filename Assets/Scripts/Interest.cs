@@ -46,6 +46,6 @@ public class Interest : MonoBehaviour {
             elapsed = Random.Range(minTime, maxTime);
         }
         if (CurrentNeed != Need.None) Homefulness -= homefullnessReduction;
-        if (Homefulness <= 0) me.SetTarget(exit, TargetPriority.HIGH);
+        //if (Homefulness <= 0) me.SetTarget(exit);
     }
 }
