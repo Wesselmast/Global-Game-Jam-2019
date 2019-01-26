@@ -8,8 +8,9 @@ public class PlayerCamera : MonoBehaviour {
     [SerializeField] private GameObject nurse;
     private Vector3 zeroRef = Vector3.zero;
     private NurseInput input;
-    private Camera cam;
     private Vector3 startPos;
+    private Vector3 scrollDist;
+    private Camera cam;
     private float travel;
 
     private void Awake () {
@@ -27,20 +28,13 @@ public class PlayerCamera : MonoBehaviour {
     }
 
     private void SmoothFollow() {
-        Vector3 targetPosition = nurse.transform.position + startPos;
+        Vector3 targetPosition = nurse.transform.position + startPos + scrollDist;
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref zeroRef, smooth);
     }
 
     private void Scrolling() {
-        float scrollPos = input.ScrollPos;
-        if (scrollPos > 0f && travel > 30) {
-            travel = travel - scrollSpeed;
-            //transform.Translate(0, 0, 1 * scrollSpeed, Space.Self);
-        }
-        else if (scrollPos < 0f && travel < 75) {
-            travel = travel + scrollSpeed;
-            //transform.Translate(0, 0, -1 * scrollSpeed, Space.Self);
-        }
-        cam.fieldOfView = travel;
+        if (input.ScrollPos > 0f && travel > -6.5f) travel = travel - scrollSpeed;
+        else if (input.ScrollPos < 0f && travel < 1)  travel = travel + scrollSpeed;
+        scrollDist = new Vector3(0, travel, 0);
     }
 }
