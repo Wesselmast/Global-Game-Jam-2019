@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ActivityZone : MonoBehaviour {
@@ -25,5 +24,6 @@ public class ActivityZone : MonoBehaviour {
     IEnumerator Counter(Interest i) {
         yield return new WaitForSeconds(needDowntime);
         i.CurrentNeed = Need.None;
+
     }
 }
