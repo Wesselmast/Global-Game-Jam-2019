@@ -1,18 +1,46 @@
 fileFormatVersion: 2
-guid: 5c249b666fbec134abedbca74a8522d8
+guid: 372c25903ce721548a31a3518f3ef151
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: LampWallBase
+    100004: LampWallBasePole
+    100006: LampWallLight
+    100008: LampWallSwitch
+    100010: LampWallSwitchWire
+    100012: Switch
+    100014: Switch1
     400000: //RootNode
-    2100000: Green
-    2100002: Yellow
-    2100004: Red
-    2100006: Blue
-    2100008: Wood
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Bookcase1
+    400002: LampWallBase
+    400004: LampWallBasePole
+    400006: LampWallLight
+    400008: LampWallSwitch
+    400010: LampWallSwitchWire
+    400012: Switch
+    400014: Switch1
+    2100000: LampSwitch
+    2100002: LampPole
+    2100004: LampLight
+    2100006: LampBase
+    2300000: LampWallBase
+    2300002: LampWallBasePole
+    2300004: LampWallLight
+    2300006: LampWallSwitchWire
+    2300008: Switch
+    2300010: Switch1
+    3300000: LampWallBase
+    3300002: LampWallBasePole
+    3300004: LampWallLight
+    3300006: LampWallSwitchWire
+    3300008: Switch
+    3300010: Switch1
+    4300000: Switch
+    4300002: Switch1
+    4300004: LampWallSwitchWire
+    4300006: LampWallBasePole
+    4300008: LampWallLight
+    4300010: LampWallBase
   externalObjects: {}
   materials:
     importMaterials: 1
