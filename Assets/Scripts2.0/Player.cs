@@ -14,19 +14,26 @@ public class Player : MonoBehaviour {
     public float maxDiaree = 150f;
     public float diareeeee = 150f;
 
-    float speed;
+    public float speed;
     bool disabled;
+
+    public Transform wheel1;
+    public Transform wheel2;
 
     public ParticleSystem syst1;
     public ParticleSystem syst2;
     public ParticleSystem syst3;
     AudioSource src;
+    public AudioSource src2;
+    public AudioClip clip;
 
+    bool canSOund;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
         src = GetComponent<AudioSource>();
+        src.volume = 0.5f;
     }
 
     private void Update()
@@ -36,16 +43,16 @@ public class Player : MonoBehaviour {
 
         int mult = (diareeeee > 0) ? 1 : 0;
 
-        float deltaSpeed = (acceleration * Input.GetAxisRaw("Jump") - friction) * Time.deltaTime * mult;
+        float deltaSpeed = (acceleration * Input.GetAxisRaw("Jump") * mult - friction) * Time.deltaTime ;
         speed += deltaSpeed;
         speed = Mathf.Clamp(speed, -maxSpeed, maxSpeed);
 
         diareeeee -= (Input.GetAxisRaw("Jump") != 0) ? 10 * Time.deltaTime : 0;
         diareeeee = Mathf.Clamp(diareeeee, 0, maxDiaree);
 
-        if((Input.GetAxisRaw("Jump") != 0))
+        if((Input.GetAxisRaw("Jump") != 0 && diareeeee > 0))
         {
-            src.volume = 1;
+            src.volume = 0.7f;
             syst1.emissionRate = 100;
             syst2.emissionRate = 100;
             syst3.emissionRate = 100;
@@ -64,10 +71,18 @@ public class Player : MonoBehaviour {
 
         controller.Move(velocity);
 
-        if(diareeeee <= 0 && Mathf.Abs(speed) < 3.0f)
+        if(diareeeee <= 0 && Mathf.Abs(speed) < 1.0f)
         {
             DIEDIEDIE();
         }
+
+        if(speed > 10)
+        {
+            canSOund = true;
+        }
+
+        wheel1.RotateAroundLocal(Vector3.forward, -Time.deltaTime * speed * 2);
+        wheel2.RotateAroundLocal(Vector3.forward, -Time.deltaTime * speed * 2);
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -77,6 +92,16 @@ public class Player : MonoBehaviour {
         if (hit.gameObject.GetComponent<Nurse>())
         {
             hit.gameObject.GetComponent<Nurse>().Die();
+        }
+        else
+
+        {
+            if (canSOund)
+            {
+                src2.pitch = Random.Range(0.9f, 1.1f);
+                src2.PlayOneShot(clip);
+                canSOund = false;
+            }
         }
     }
 

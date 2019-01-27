@@ -26,6 +26,8 @@ public class Nurse : MonoBehaviour {
 
 
     public GameObject food;
+    AudioSource src;
+    public AudioClip clip;
 
 
     public bool isDeath;
@@ -44,6 +46,8 @@ public class Nurse : MonoBehaviour {
         }
 
         StartCoroutine(FollowPath(waypoints));
+
+        src = GetComponent<AudioSource>();
 
     }
 
@@ -143,6 +147,8 @@ public class Nurse : MonoBehaviour {
     {
        // Destroy(gameObject);
         anim.SetTrigger("ded");
+        src.pitch = Random.Range(1.3f,1.7f);
+        src.PlayOneShot(clip);
         isDeath = true;
         spotlight.enabled = false;
         GetComponent<BoxCollider>().enabled = false;
